@@ -8,11 +8,13 @@
     tools:context=".ui.notifications.NotificationsFragment">
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/pointsCounter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:layout_marginEnd="60dp"
+        android:text="Punkty: "
         android:textColor="@color/black"
-        tools:layout_editor_absoluteX="283dp"
-        tools:layout_editor_absoluteY="66dp" />
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,17 +8,13 @@
     tools:context=".ui.dashboard.DashboardFragment">
 
     <TextView
-        android:id="@+id/textView5"
-        android:layout_width="159dp"
-        android:layout_height="29dp"
-        android:layout_marginStart="302dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="63dp"
-        android:text="Punkty:"
+        android:id="@+id/pointsCounter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="60dp"
+        android:text="Punkty: "
         android:textColor="@color/black"
-        android:textSize="24sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
