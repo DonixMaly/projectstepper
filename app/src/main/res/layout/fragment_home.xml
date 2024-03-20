@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="60dp"
         android:text="Punkty: "
+        android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -32,6 +33,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView"
+            android:textColor="@color/black"
+
             android:textSize="48sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
@@ -43,6 +46,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="kroków"
+            android:textColor="@color/black"
+
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
@@ -67,7 +72,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
-                android:text="Przebyta droga" />
+                android:text="Przebyta droga"
+                android:textColor="@color/black" />
         </LinearLayout>
 
 
@@ -89,7 +95,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
-                android:text="Spalone kalorie" />
+                android:text="Spalone kalorie"
+                android:textColor="@color/black" />
         </LinearLayout>
 
 
