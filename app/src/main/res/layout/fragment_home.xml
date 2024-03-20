@@ -62,7 +62,7 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/distanceTravelledicon"
+                android:id="@+id/distanceTravelledIcon"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:src="@mipmap/ic_launcher_foreground" />
