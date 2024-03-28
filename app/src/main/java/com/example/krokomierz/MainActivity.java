@@ -28,6 +28,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private TextView distanceDisplay;
     private SensorManager sensorManager;
     private Sensor stepSensor;
+
+    private TextView caloriesDisplay;
     private int stepCount = 0;
 
     @Override
@@ -47,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         stepsCountDisplay = findViewById(R.id.stepsCounter);
         distanceDisplay = findViewById(R.id.distanceTravelled);
+        caloriesDisplay = findViewById(R.id.caloriesBurnt);
 
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         stepSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
@@ -83,5 +86,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         float distanceTravelled = stepCount * 0.762f / 1000;
         distanceDisplay.setText(String.format("Przebyta droga: %skm", new DecimalFormat("##.##").format(distanceTravelled)));
+
+        float caloriesBurnt = stepCount * 0.04f;
+        caloriesDisplay.setText(String.format("Spalone kalorie: %skcal", new DecimalFormat("#####").format(caloriesBurnt)));
+
     }
 }
