@@ -21,6 +21,10 @@ import com.example.krokomierz.databinding.ActivityMainBinding;
 
 import java.text.DecimalFormat;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
 
     private ActivityMainBinding binding;
@@ -28,8 +32,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private TextView distanceDisplay;
     private SensorManager sensorManager;
     private Sensor stepSensor;
-
     private TextView caloriesDisplay;
+    public float storePoints = 0;
     private int stepCount = 0;
 
     @Override
@@ -56,6 +60,13 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         if (stepSensor == null) {
             stepsCountDisplay.setText("Licznik kroków nie dostępny");
+        }
+
+        SimpleDateFormat sdf = new SimpleDateFormat("HH");
+        String hour = sdf.format(new Date());
+
+        if(hour == "00"){
+            stepCount = 0;
         }
     }
 
@@ -90,5 +101,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         float caloriesBurnt = stepCount * 0.04f;
         caloriesDisplay.setText(String.format("Spalone kalorie: %skcal", new DecimalFormat("#####").format(caloriesBurnt)));
 
+        storePoints = distanceTravelled / 10;
     }
 }
