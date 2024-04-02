@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/j48"
+    android:background="#344955"
     tools:context=".ui.home.HomeFragment">
 
     <TextView
@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="60dp"
         android:text="Punkty: "
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -33,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="48sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
@@ -45,7 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="kroków"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
 
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -64,7 +64,7 @@
                 android:id="@+id/distanceTravelledIcon"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:src="@mipmap/ic_launcher_foreground" />
+                android:src="@drawable/ic_launcher_foreground"/>
 
             <TextView
                 android:id="@+id/distanceTravelled"
@@ -72,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
                 android:text="Przebyta droga: "
-                android:textColor="@color/black" />
+                android:textColor="@color/white" />
         </LinearLayout>
 
 
@@ -87,7 +87,7 @@
                 android:id="@+id/caloriesBurntIcon"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:src="@mipmap/ic_launcher2_foreground" />
+                android:src="@drawable/ic_launcher2_foreground" />
 
             <TextView
                 android:id="@+id/caloriesBurnt"
@@ -95,7 +95,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
                 android:text="Spalone kalorie:"
-                android:textColor="@color/black" />
+                android:textColor="@color/white" />
         </LinearLayout>
 
 
