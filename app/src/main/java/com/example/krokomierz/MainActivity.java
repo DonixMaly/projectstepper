@@ -2,6 +2,7 @@ package com.example.krokomierz;
 
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -24,8 +25,9 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import com.example.krokomierz.publicVariables;
 
-public class MainActivity extends AppCompatActivity implements SensorEventListener {
+public class MainActivity extends AppCompatActivity implements SensorEventListener, publicVariables {
 
     private ActivityMainBinding binding;
     private TextView stepsCountDisplay;
@@ -39,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -55,6 +58,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         distanceDisplay = findViewById(R.id.distanceTravelled);
         caloriesDisplay = findViewById(R.id.caloriesBurnt);
 
+        loadData();
+
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         stepSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
 
@@ -67,6 +72,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         if(hour == "00"){
             stepCount = 0;
+            saveData();
         }
     }
 
@@ -101,6 +107,41 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         float caloriesBurnt = stepCount * 0.04f;
         caloriesDisplay.setText(String.format("Spalone kalorie: %skcal", new DecimalFormat("#####").format(caloriesBurnt)));
 
-        storePoints = distanceTravelled / 10;
+        float storePoints = distanceTravelled / 10;
+        saveData();
+        loadData();
     }
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState){
+        super.onSaveInstanceState(savedInstanceState);
+
+        savedInstanceState.putString("stepsDone", stepsCountDisplay.getText().toString());
+    }
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState){
+        super.onRestoreInstanceState(savedInstanceState);
+
+        String stepsDone = savedInstanceState.getString("stepsDone");
+        stepsCountDisplay.setText(stepsDone);
+
+    }
+    private void saveData(){
+        SharedPreferences sharedPreferences = getSharedPreferences("myData", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        StringBuilder dataToSave = new StringBuilder();
+        dataToSave.append(stepCount);
+
+        editor.putString("stepsTaken", dataToSave.toString());
+        editor.apply();
+    }
+    private void loadData(){
+        SharedPreferences sharedPreferences = getSharedPreferences("mydata", MODE_PRIVATE);
+        String savedData = sharedPreferences.getString("stepsTaken", "");
+
+        if(!savedData.isEmpty()){
+            stepsCountDisplay.setText("błąd: brak danych");
+        }
+    }
+
 }

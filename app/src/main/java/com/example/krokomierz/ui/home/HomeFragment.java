@@ -10,9 +10,11 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.krokomierz.MainActivity;
 import com.example.krokomierz.databinding.FragmentHomeBinding;
+import com.example.krokomierz.publicVariables;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements publicVariables {
 
     private FragmentHomeBinding binding;
 
@@ -32,4 +34,5 @@ public class HomeFragment extends Fragment {
         binding = null;
 
     }
+
 }

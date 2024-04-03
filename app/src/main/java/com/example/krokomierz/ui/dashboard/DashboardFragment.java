@@ -25,6 +25,8 @@ public class DashboardFragment extends Fragment {
         View root = binding.getRoot();
 
         return root;
+
+
     }
 
     @Override
