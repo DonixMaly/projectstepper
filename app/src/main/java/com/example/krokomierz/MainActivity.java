@@ -2,6 +2,7 @@ package com.example.krokomierz;
 
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -35,6 +36,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private TextView caloriesDisplay;
     public float storePoints = 0;
     private int stepCount = 0;
+    private static final String PREFS_NAME = "MyPrefsFile";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,11 +64,12 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         if (stepSensor == null) {
             stepsCountDisplay.setText("Licznik kroków nie dostępny");
         }
+        loadData();
 
         SimpleDateFormat sdf = new SimpleDateFormat("HH");
         String hour = sdf.format(new Date());
 
-        if(hour == "00"){
+        if (hour == "00") {
             stepCount = 0;
         }
     }
@@ -82,6 +86,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     protected void onPause() {
         super.onPause();
         sensorManager.unregisterListener(this);
+        saveData();
     }
 
     @Override
@@ -102,5 +107,22 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         caloriesDisplay.setText(String.format("Spalone kalorie: %skcal", new DecimalFormat("#####").format(caloriesBurnt)));
 
         storePoints = distanceTravelled / 10;
+        saveData();
+    }
+
+    public int getStepCount() {
+        return stepCount;
+    }
+
+    public void saveData() {
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putInt("stepCount", stepCount);
+        editor.apply();
+    }
+
+    public void loadData() {
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        stepCount = settings.getInt("stepCount", 0);
     }
 }

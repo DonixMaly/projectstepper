@@ -10,7 +10,10 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.krokomierz.MainActivity;
 import com.example.krokomierz.databinding.FragmentHomeBinding;
+
+import java.text.DecimalFormat;
 
 public class HomeFragment extends Fragment {
 
@@ -23,6 +26,22 @@ public class HomeFragment extends Fragment {
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
+        MainActivity mainActivity = (MainActivity) getActivity();
+        if (mainActivity != null) {
+            int stepCount = mainActivity.getStepCount();
+            float distanceTravelled = stepCount * 0.762f / 1000;
+            float caloriesBurnt = stepCount * 0.04f;
+
+            TextView stepsCountDisplay = binding.stepsCounter;
+            TextView distanceDisplay = binding.distanceTravelled;
+            TextView caloriesDisplay = binding.caloriesBurnt;
+
+            stepsCountDisplay.setText(String.valueOf(stepCount));
+            distanceDisplay.setText(String.format("Przebyta droga: %skm", new DecimalFormat("##.##").format(distanceTravelled)));
+            caloriesDisplay.setText(String.format("Spalone kalorie: %skcal", new DecimalFormat("#####").format(caloriesBurnt)));
+        }
+
 
         return root;
     }
