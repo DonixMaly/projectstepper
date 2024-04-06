@@ -23,6 +23,7 @@ import com.example.krokomierz.databinding.ActivityMainBinding;
 import java.text.DecimalFormat;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 
@@ -60,17 +61,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         stepSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
-
+        loadData();
         if (stepSensor == null) {
             stepsCountDisplay.setText("Licznik kroków nie dostępny");
-        }
-        loadData();
-
-        SimpleDateFormat sdf = new SimpleDateFormat("HH");
-        String hour = sdf.format(new Date());
-
-        if (hour == "00") {
-            stepCount = 0;
         }
     }
 
