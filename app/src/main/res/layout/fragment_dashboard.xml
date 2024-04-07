@@ -62,8 +62,10 @@
         android:layout_height="221dp"
         android:layout_marginStart="200dp"
         android:layout_marginTop="80dp"
+        android:layout_marginEnd="10dp"
         android:gravity="center"
         android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -78,8 +80,8 @@
 
         <TextView
             android:id="@+id/textView5"
-            android:layout_width="152dp"
-            android:layout_height="53dp"
+            android:layout_width="156dp"
+            android:layout_height="60dp"
             android:text="15% zniżki do sklepu odzieżowego Nike"
             android:textColor="@color/white"
             android:textSize="16sp"
@@ -139,8 +141,10 @@
         android:layout_height="270dp"
         android:layout_marginStart="200dp"
         android:layout_marginTop="312dp"
+        android:layout_marginEnd="10dp"
         android:gravity="center"
         android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
