@@ -39,15 +39,15 @@ public class DashboardFragment extends Fragment {
 
             pointsDisplay.setText("Punkty: " + storePoints);
 
-            spotifyBuy.setOnClickListener(v -> buyItem("Spotify", storePoints, 1000));
-            nikeBuy.setOnClickListener(v -> buyItem("Nike", storePoints, 5000));
-            giftCardBuy.setOnClickListener(v -> buyItem("Gift Card", storePoints, 50000));
-            zabkaBuy.setOnClickListener(v -> buyItem("Żabka", storePoints, 2500));
+            spotifyBuy.setOnClickListener(v -> buyItem(storePoints, 1000));
+            nikeBuy.setOnClickListener(v -> buyItem(storePoints, 5000));
+            giftCardBuy.setOnClickListener(v -> buyItem(storePoints, 50000));
+            zabkaBuy.setOnClickListener(v -> buyItem(storePoints, 2500));
         }
         return root;
     }
 
-    private void buyItem(String itemName, int points, int requiredPoints) {
+    private void buyItem(int points, int requiredPoints) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setMessage("Masz pewność, że chcesz kupić?")
                 .setTitle("Stepper")
