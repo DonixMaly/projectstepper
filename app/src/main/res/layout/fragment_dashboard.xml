@@ -42,6 +42,7 @@
             android:layout_width="150dp"
             android:layout_height="46dp"
             android:text="Spotify premium na miesiąc"
+            android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="16sp"
             tools:layout_editor_absoluteX="20dp"
@@ -85,6 +86,7 @@
             android:text="15% zniżki do sklepu odzieżowego Nike"
             android:textColor="@color/white"
             android:textSize="16sp"
+            android:textAlignment="center"
             tools:layout_editor_absoluteX="254dp"
             tools:layout_editor_absoluteY="154dp" />
 
@@ -123,6 +125,7 @@
             android:text="Bon na 150zł do różnych sklepów"
             android:textColor="@color/white"
             android:textSize="16sp"
+            android:textAlignment="center"
             tools:layout_editor_absoluteX="56dp"
             tools:layout_editor_absoluteY="509dp" />
 
@@ -163,6 +166,7 @@
             android:text="Bon na napoje izotoniczne 2szt"
             android:textColor="@color/white"
             android:textSize="16sp"
+            android:textAlignment="center"
             tools:layout_editor_absoluteX="217dp"
             tools:layout_editor_absoluteY="441dp" />
 
