@@ -32,14 +32,17 @@ public class HomeFragment extends Fragment {
             int stepCount = mainActivity.getStepCount();
             float distanceTravelled = stepCount * 0.762f / 1000;
             float caloriesBurnt = stepCount * 0.04f;
+            int storePoints = mainActivity.getPoints();
 
             TextView stepsCountDisplay = binding.stepsCounter;
             TextView distanceDisplay = binding.distanceTravelled;
             TextView caloriesDisplay = binding.caloriesBurnt;
+            TextView pointsDisplay = binding.pointsCounter;
 
             stepsCountDisplay.setText(String.valueOf(stepCount));
             distanceDisplay.setText(String.format("Przebyta droga: %skm", new DecimalFormat("##.##").format(distanceTravelled)));
             caloriesDisplay.setText(String.format("Spalone kalorie: %skcal", new DecimalFormat("#####").format(caloriesBurnt)));
+            pointsDisplay.setText("Punkty: " + storePoints);
         }
 
 

@@ -39,6 +39,8 @@ public class DashboardFragment extends Fragment {
             Button giftCardBuy = binding.button4;
             Button zabkaBuy = binding.button5;
 
+            pointsDisplay.setText("Punkty: " + storePoints);
+
             spotifyBuy.setOnClickListener(View -> {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                 builder.setMessage("Masz pewność, że chcesz kupić?")
@@ -129,7 +131,7 @@ public class DashboardFragment extends Fragment {
                 builder.setMessage("Masz pewność, że chcesz kupić?")
                         .setTitle("Stepper")
                         .setPositiveButton("TAK", (dialog, id) -> {
-                            if(storePoints > 10000){
+                            if(storePoints > 2500){
                                 AlertDialog.Builder builder2 = new AlertDialog.Builder(getContext());
                                 builder2.setMessage("Dziękujemy za zakup")
                                         .setTitle("Zakup udany")

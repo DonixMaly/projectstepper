@@ -10,7 +10,10 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.krokomierz.MainActivity;
 import com.example.krokomierz.databinding.FragmentNotificationsBinding;
+
+import org.w3c.dom.Text;
 
 public class NotificationsFragment extends Fragment {
 
@@ -23,7 +26,15 @@ public class NotificationsFragment extends Fragment {
 
         binding = FragmentNotificationsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+        MainActivity mainActivity = (MainActivity) getActivity();
+        if (mainActivity != null){
+            TextView pointsDisplay = binding.pointsCounter;
+            int storePoints = mainActivity.getPoints();
+            pointsDisplay.setText("Punkty: " + storePoints);
+        }
         return root;
+
+
     }
 
     @Override

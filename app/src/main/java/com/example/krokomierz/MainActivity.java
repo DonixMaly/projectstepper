@@ -103,7 +103,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         caloriesDisplay.setText(String.format("Spalone kalorie: %skcal", new DecimalFormat("#####").format(caloriesBurnt)));
 
         storePoints = stepCount / 10;
-        pointsDisplay.setText(String.format("Punkty: %s", new DecimalFormat("####").format(storePoints)));
+        pointsDisplay.setText(String.format("Punkty: %", new DecimalFormat("####").format(storePoints)));
+
+        pointsDisplay.setText("Punkty: " + storePoints);
 
         saveData();
     }
@@ -119,10 +121,14 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         SharedPreferences.Editor editor = settings.edit();
         editor.putInt("stepCount", stepCount);
         editor.apply();
+        SharedPreferences.Editor editor1 = settings.edit();
+        editor1.putInt("storePoints", storePoints);
+        editor1.apply();
     }
 
     public void loadData() {
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
         stepCount = settings.getInt("stepCount", 0);
+        storePoints = settings.getInt("storePoints", 0);
     }
 }
