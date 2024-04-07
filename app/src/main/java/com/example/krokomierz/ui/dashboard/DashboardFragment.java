@@ -15,8 +15,6 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.krokomierz.MainActivity;
 import com.example.krokomierz.databinding.FragmentDashboardBinding;
 
-import java.text.DecimalFormat;
-
 public class DashboardFragment extends Fragment {
 
     private FragmentDashboardBinding binding;
@@ -30,7 +28,7 @@ public class DashboardFragment extends Fragment {
         View root = binding.getRoot();
 
         MainActivity mainActivity = (MainActivity) getActivity();
-        if (mainActivity != null){
+        if (mainActivity != null) {
             int storePoints = mainActivity.getPoints();
 
             TextView pointsDisplay = binding.pointsCounter;
@@ -41,122 +39,48 @@ public class DashboardFragment extends Fragment {
 
             pointsDisplay.setText("Punkty: " + storePoints);
 
-            spotifyBuy.setOnClickListener(View -> {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setMessage("Masz pewność, że chcesz kupić?")
-                        .setTitle("Stepper")
-                        .setPositiveButton("TAK", (dialog, id) -> {
-                            if(storePoints > 10000){
-                                AlertDialog.Builder builder2 = new AlertDialog.Builder(getContext());
-                                builder2.setMessage("Dziękujemy za zakup")
-                                        .setTitle("Zakup udany")
-                                        .setPositiveButton("OK", (dialog2, id2) -> {
-
-                                        });
-                                AlertDialog dialog2 = builder2.create();
-                                dialog2.show();
-                            } else {
-                                AlertDialog.Builder builder2 = new AlertDialog.Builder(getContext());
-                                builder2.setMessage("za mało punktów")
-                                        .setTitle("Zakup nieudany")
-                                        .setPositiveButton("OK", (dialog2, id2) -> {
-
-                                        });
-                                AlertDialog dialog2 = builder2.create();
-                                dialog2.show();
-                            }
-                        });
-                AlertDialog dialog = builder.create();
-                dialog.show();
-            });
-            nikeBuy.setOnClickListener(View -> {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setMessage("Masz pewność, że chcesz kupić?")
-                        .setTitle("Stepper")
-                        .setPositiveButton("TAK", (dialog, id) -> {
-                            if(storePoints > 5000){
-                                AlertDialog.Builder builder2 = new AlertDialog.Builder(getContext());
-                                builder2.setMessage("Dziękujemy za zakup")
-                                        .setTitle("Zakup udany")
-                                        .setPositiveButton("OK", (dialog2, id2) -> {
-
-                                        });
-                                AlertDialog dialog2 = builder2.create();
-                                dialog2.show();
-                            } else {
-                                AlertDialog.Builder builder2 = new AlertDialog.Builder(getContext());
-                                builder2.setMessage("za mało punktów")
-                                        .setTitle("Zakup nieudany")
-                                        .setPositiveButton("OK", (dialog2, id2) -> {
-
-                                        });
-                                AlertDialog dialog2 = builder2.create();
-                                dialog2.show();
-                            }
-                        });
-                AlertDialog dialog = builder.create();
-                dialog.show();
-            });
-            giftCardBuy.setOnClickListener(View -> {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setMessage("Masz pewność, że chcesz kupić?")
-                        .setTitle("Stepper")
-                        .setPositiveButton("TAK", (dialog, id) -> {
-                            if(storePoints > 50000){
-                                AlertDialog.Builder builder2 = new AlertDialog.Builder(getContext());
-                                builder2.setMessage("Dziękujemy za zakup")
-                                        .setTitle("Zakup udany")
-                                        .setPositiveButton("OK", (dialog2, id2) -> {
-
-                                        });
-                                AlertDialog dialog2 = builder2.create();
-                                dialog2.show();
-                            } else {
-                                AlertDialog.Builder builder2 = new AlertDialog.Builder(getContext());
-                                builder2.setMessage("za mało punktów")
-                                        .setTitle("Zakup nieudany")
-                                        .setPositiveButton("OK", (dialog2, id2) -> {
-
-                                        });
-                                AlertDialog dialog2 = builder2.create();
-                                dialog2.show();
-                            }
-                        });
-                AlertDialog dialog = builder.create();
-                dialog.show();
-            });
-
-            zabkaBuy.setOnClickListener(View -> {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setMessage("Masz pewność, że chcesz kupić?")
-                        .setTitle("Stepper")
-                        .setPositiveButton("TAK", (dialog, id) -> {
-                            if(storePoints > 2500){
-                                AlertDialog.Builder builder2 = new AlertDialog.Builder(getContext());
-                                builder2.setMessage("Dziękujemy za zakup")
-                                        .setTitle("Zakup udany")
-                                        .setPositiveButton("OK", (dialog2, id2) -> {
-
-                                        });
-                                AlertDialog dialog2 = builder2.create();
-                                dialog2.show();
-                            } else {
-                                AlertDialog.Builder builder2 = new AlertDialog.Builder(getContext());
-                                builder2.setMessage("za mało punktów")
-                                        .setTitle("Zakup nieudany")
-                                        .setPositiveButton("OK", (dialog2, id2) -> {
-
-                                        });
-                                AlertDialog dialog2 = builder2.create();
-                                dialog2.show();
-                            }
-                        });
-                AlertDialog dialog = builder.create();
-                dialog.show();
-            });
+            spotifyBuy.setOnClickListener(v -> buyItem("Spotify", storePoints, 1000));
+            nikeBuy.setOnClickListener(v -> buyItem("Nike", storePoints, 5000));
+            giftCardBuy.setOnClickListener(v -> buyItem("Gift Card", storePoints, 50000));
+            zabkaBuy.setOnClickListener(v -> buyItem("Żabka", storePoints, 2500));
         }
         return root;
     }
+
+    private void buyItem(String itemName, int points, int requiredPoints) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setMessage("Masz pewność, że chcesz kupić?")
+                .setTitle("Stepper")
+                .setPositiveButton("TAK", (dialog, id) -> {
+                    if (points >= requiredPoints) {
+                        int remainingPoints = points - requiredPoints;
+                        MainActivity mainActivity = (MainActivity) getActivity();
+                        if (mainActivity != null) {
+                            mainActivity.setPoints(remainingPoints);
+                            TextView pointsDisplay = binding.pointsCounter;
+                            pointsDisplay.setText("Punkty: " + remainingPoints);
+                        }
+                        AlertDialog.Builder builder2 = new AlertDialog.Builder(getContext());
+                        builder2.setMessage("Dziękujemy za zakup")
+                                .setTitle("Zakup udany")
+                                .setPositiveButton("OK", (dialog2, id2) -> {
+                                });
+                        AlertDialog dialog2 = builder2.create();
+                        dialog2.show();
+                    } else {
+                        AlertDialog.Builder builder2 = new AlertDialog.Builder(getContext());
+                        builder2.setMessage("Za mało punktów")
+                                .setTitle("Zakup nieudany")
+                                .setPositiveButton("OK", (dialog2, id2) -> {
+                                });
+                        AlertDialog dialog2 = builder2.create();
+                        dialog2.show();
+                    }
+                });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
 
     @Override
     public void onDestroyView() {

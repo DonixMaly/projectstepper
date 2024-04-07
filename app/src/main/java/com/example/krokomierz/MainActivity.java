@@ -8,10 +8,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.widget.Button;
 import android.widget.TextView;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -20,12 +17,9 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.krokomierz.databinding.ActivityMainBinding;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.text.DecimalFormat;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
@@ -64,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         stepSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
+
         loadData();
         if (stepSensor == null) {
             stepsCountDisplay.setText("Licznik kroków nie dostępny");
@@ -92,7 +87,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     @Override
     public void onSensorChanged(SensorEvent event) {
         if (event.sensor == stepSensor) {
-            stepCount = (int) event.values[0];
+            int newSteps = (int) event.values[0];
+            int deltaSteps = newSteps - stepCount;
+            stepCount = newSteps;
+            storePoints += deltaSteps / 10;
             stepsCountDisplay.setText(String.valueOf(stepCount));
         }
 
@@ -101,10 +99,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         float caloriesBurnt = stepCount * 0.04f;
         caloriesDisplay.setText(String.format("Spalone kalorie: %skcal", new DecimalFormat("#####").format(caloriesBurnt)));
-
-        storePoints = stepCount / 10;
-        pointsDisplay.setText(String.format("Punkty: %s", new DecimalFormat("####").format(storePoints)));
-
         pointsDisplay.setText("Punkty: " + storePoints);
 
         saveData();
@@ -114,21 +108,25 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         return stepCount;
     }
 
-    public int getPoints() {return storePoints;}
+    public int getPoints() {
+        return storePoints;
+    }
 
     public void saveData() {
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
         SharedPreferences.Editor editor = settings.edit();
         editor.putInt("stepCount", stepCount);
+        editor.putInt("storePoints", storePoints);
         editor.apply();
-        SharedPreferences.Editor editor1 = settings.edit();
-        editor1.putInt("storePoints", storePoints);
-        editor1.apply();
     }
 
     public void loadData() {
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
         stepCount = settings.getInt("stepCount", 0);
         storePoints = settings.getInt("storePoints", 0);
+    }
+
+    public void setPoints(int points){
+        this.storePoints = points;
     }
 }
