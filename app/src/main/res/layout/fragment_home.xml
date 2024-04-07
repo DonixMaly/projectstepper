@@ -64,7 +64,7 @@
                 android:id="@+id/distanceTravelledIcon"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:src="@drawable/ic_launcher_foreground"/>
+                android:src="@drawable/way"/>
 
             <TextView
                 android:id="@+id/distanceTravelled"
@@ -87,7 +87,7 @@
                 android:id="@+id/caloriesBurntIcon"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:src="@drawable/ic_launcher2_foreground" />
+                android:src="@drawable/calories" />
 
             <TextView
                 android:id="@+id/caloriesBurnt"
