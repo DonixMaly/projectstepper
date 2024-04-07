@@ -51,7 +51,7 @@
             android:id="@+id/button2"
             android:layout_width="142dp"
             android:layout_height="59dp"
-            android:text="Odbierz za "
+            android:text="Odbierz za 10000"
             tools:layout_editor_absoluteX="28dp"
             tools:layout_editor_absoluteY="220dp" />
     </LinearLayout>
@@ -90,7 +90,7 @@
             android:id="@+id/button3"
             android:layout_width="142dp"
             android:layout_height="59dp"
-            android:text="Odbierz za "
+            android:text="Odbierz za 5000"
             tools:layout_editor_absoluteX="261dp"
             tools:layout_editor_absoluteY="217dp" />
     </LinearLayout>
@@ -128,7 +128,7 @@
             android:id="@+id/button4"
             android:layout_width="142dp"
             android:layout_height="59dp"
-            android:text="Odbierz za "
+            android:text="Odbierz za 50000"
             tools:layout_editor_absoluteX="57dp"
             tools:layout_editor_absoluteY="563dp" />
 
@@ -166,7 +166,7 @@
             android:id="@+id/button5"
             android:layout_width="142dp"
             android:layout_height="59dp"
-            android:text="Odbierz za "
+            android:text="Odbierz za 2500"
             tools:layout_editor_absoluteX="233dp"
             tools:layout_editor_absoluteY="494dp" />
     </LinearLayout>
