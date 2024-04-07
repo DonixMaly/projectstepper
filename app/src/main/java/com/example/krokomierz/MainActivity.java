@@ -8,6 +8,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -35,7 +36,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private SensorManager sensorManager;
     private Sensor stepSensor;
     private TextView caloriesDisplay;
-    public float storePoints = 0;
+    private TextView pointsDisplay;
+    public int storePoints = 0;
     private int stepCount = 0;
     private static final String PREFS_NAME = "MyPrefsFile";
 
@@ -58,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         stepsCountDisplay = findViewById(R.id.stepsCounter);
         distanceDisplay = findViewById(R.id.distanceTravelled);
         caloriesDisplay = findViewById(R.id.caloriesBurnt);
+        pointsDisplay = findViewById(R.id.pointsCounter);
 
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         stepSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
@@ -99,13 +102,17 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         float caloriesBurnt = stepCount * 0.04f;
         caloriesDisplay.setText(String.format("Spalone kalorie: %skcal", new DecimalFormat("#####").format(caloriesBurnt)));
 
-        storePoints = distanceTravelled / 10;
+        storePoints = stepCount / 10;
+        pointsDisplay.setText(String.format("Punkty: %", new DecimalFormat("####").format(storePoints)));
+
         saveData();
     }
 
     public int getStepCount() {
         return stepCount;
     }
+
+    public int getPoints() {return storePoints;}
 
     public void saveData() {
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
