@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         caloriesDisplay.setText(String.format("Spalone kalorie: %skcal", new DecimalFormat("#####").format(caloriesBurnt)));
 
         storePoints = stepCount / 10;
-        pointsDisplay.setText(String.format("Punkty: %", new DecimalFormat("####").format(storePoints)));
+        pointsDisplay.setText(String.format("Punkty: %s", new DecimalFormat("####").format(storePoints)));
 
         saveData();
     }
